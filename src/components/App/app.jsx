@@ -52,7 +52,37 @@ export default class App extends React.Component {
       return { todoData: newArray }
     })
   }
+  addEditingItem = (text, id) => {
+    this.setState(({ todoData }) => {
+      const idx = todoData.findIndex((el) => el.id === id)
 
+      const oldItem = todoData[idx]
+      const newItem = { ...oldItem, label: text ? text : oldItem.label, edit: !oldItem.edit }
+      const newArr = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
+
+      return {
+        todoData: newArr,
+      }
+    })
+  }
+  onEditTask = (id) => {
+    this.setState(({ todoData }) => {
+      return {
+        todoData: this.toggleProperty(todoData, id, 'edit'),
+      }
+    })
+  }
+  // updateTask = (id, e) => {
+  //   if (e.keyCode === 13) {
+  //     this.setState(({ todoData }) => {
+  //       todoData.map((el) => {
+  //         el.id === id
+  //       })
+  //       const newArray = [...todoData, newItem]
+  //       return { todoData: newArray }
+  //     })
+  //   }
+  // }
   complitedFilterItem = () => {
     this.setState(({ todoData }) => {
       let filtredTodo = todoData.filter((item) => !item.done)
@@ -78,6 +108,7 @@ export default class App extends React.Component {
       return { todoData: newArray }
     })
   }
+
   render() {
     const { todoData, filter } = this.state
     const filterStatus = this.filterChange(todoData, filter)
@@ -90,6 +121,8 @@ export default class App extends React.Component {
         </header>
         <section className="main">
           <TaskList
+            onEditTask={this.onEditTask}
+            addEditingItem={this.addEditingItem}
             todos={filterStatus}
             onDeleted={this.removeItem}
             onToggleDone={this.onToggleDone}

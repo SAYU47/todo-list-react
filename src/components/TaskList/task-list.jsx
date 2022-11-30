@@ -12,11 +12,22 @@ export default class TaskList extends React.Component {
     onDeleted: PropTypes.func,
     onToggleDone: PropTypes.func,
   }
+
   render() {
-    const { todos, onDeleted, onToggleDone } = this.props
+    const { todos, onDeleted, onToggleDone, onEditTask, addEditingItem } = this.props
+
     const elements = todos.map((task) => {
       return (
-        <Task {...task} key={task.id} onDeleted={() => onDeleted(task.id)} onToggleDone={() => onToggleDone(task.id)} />
+        <Task
+          {...task}
+          key={task.id}
+          onDeleted={() => onDeleted(task.id)}
+          onToggleDone={() => onToggleDone(task.id)}
+          onEditTask={() => {
+            onEditTask(task.id)
+          }}
+          addEditingItem={(text) => addEditingItem(text, task.id)}
+        />
       )
     })
     return <ul className="todo-list">{elements}</ul>
