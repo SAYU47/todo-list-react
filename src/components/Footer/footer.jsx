@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import TaskFilter from '../TasksFilter/task-filter'
-import './footer.css'
+import TaskFilter from '../TasksFilter/TaskFilter'
+import './Footer.css'
 export default class Footer extends React.Component {
   static defaultProps = { filter: 'all', filterSwich: () => {}, clearTodo: () => {}, activeCount: () => {} }
   static propTypes = {
@@ -17,7 +17,7 @@ export default class Footer extends React.Component {
       <footer className="footer">
         <span className="todo-count">{activeCount} items left</span>
         <TaskFilter onToggleDone={() => onToggleDone(this.task.id)} filter={filter} filterSwich={filterSwich} />
-        <button className="clear-completed" onClick={clearTodo}>
+        <button className="clear-completed" onClick={clearTodo} aria-label="Очистить список дел">
           Clear completed
         </button>
       </footer>

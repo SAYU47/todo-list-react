@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import TimerGone from '../TimerGone/timer-gone'
-import './task.css'
+import TimerGone from '../TimerGone/TimerGone'
+import './Task.css'
 export default class Task extends React.Component {
   static defaultProps = {
     label: 'label не передан',
@@ -21,7 +21,7 @@ export default class Task extends React.Component {
   }
   onLabelEditTask = (e) => {
     this.setState({
-      label: e.target.value,
+      label: e.target.value.trim(),
     })
   }
   onSubmitTask = (e) => {
@@ -31,27 +31,41 @@ export default class Task extends React.Component {
       label: '',
     })
   }
+
   render() {
     const { label, done, onToggleDone, onDeleted, date, onEditTask, edit } = this.props
-    const classEdit = edit ? ' editing' : done ? 'completed' : 'acitive'
+    const classEdit = edit ? 'editing' : done ? 'completed' : 'acitive'
     const editInput = (
       <form onSubmit={this.onSubmitTask}>
-        <input type="text" className="edit" defaultValue={label} onChange={this.onLabelEditTask} />
+        <label>
+          Edit:
+          <input type="text" className="edit" defaultValue={label} onChange={this.onLabelEditTask} autoFocus />
+        </label>
       </form>
     )
 
     return (
       <li className={classEdit}>
         <div className="view">
-          <input className="toggle" type="checkbox" onClick={onToggleDone}></input>
+          <input className="toggle" type="checkbox" onChange={onToggleDone} checked={done}></input>
           <label>
             <span className="description">{label}</span>
             <TimerGone date={date} />
           </label>
-          <button className="icon icon-edit" onClick={onEditTask}></button>
-          <button className="icon icon-destroy" onClick={onDeleted}></button>
+          <button
+            className="icon icon-edit"
+            aria-label="Редактировать элемент"
+            title="Редактировать элемент"
+            onClick={onEditTask}
+          ></button>
+          <button
+            className="icon icon-destroy"
+            aria-label="Удалить элемент"
+            title="Удалить элемент"
+            onClick={onDeleted}
+          ></button>
         </div>
-        {editInput}
+        {edit && editInput}
       </li>
     )
   }

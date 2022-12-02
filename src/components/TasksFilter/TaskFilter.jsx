@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './task-filter.css'
+import './TaskFilter.css'
 export default class TaskFilter extends React.Component {
   static defaultProps = {
     filter: 'all',
@@ -11,9 +11,9 @@ export default class TaskFilter extends React.Component {
     filterSwich: PropTypes.func,
   }
   buttons = [
-    { name: 'all', label: 'All', id: 1 },
-    { name: 'active', label: 'Active', id: 2 },
-    { name: 'done', label: 'Done', id: 3 },
+    { name: 'all', label: 'All', id: 1, ariaLabel: 'Показать Всё' },
+    { name: 'active', label: 'Active', id: 2, ariaLabel: 'Показать активные дела' },
+    { name: 'done', label: 'Done', id: 3, ariaLabel: 'Показать завершённые дела' },
   ]
   render() {
     const { filter, filterSwich } = this.props
@@ -25,6 +25,7 @@ export default class TaskFilter extends React.Component {
           <button
             className={classisActive}
             type="button"
+            aria-label={button.ariaLabel}
             onClick={() => {
               filterSwich(button.name)
             }}

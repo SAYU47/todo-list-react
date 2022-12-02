@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Task from '../Task/task'
-import './task-list.css'
+import Task from '../Task/Task'
+import './TaskList.css'
 export default class TaskList extends React.Component {
   static defaultProps = {
     onDeleted: () => {},
@@ -24,7 +24,7 @@ export default class TaskList extends React.Component {
           onDeleted={() => onDeleted(task.id)}
           onToggleDone={() => onToggleDone(task.id)}
           onEditTask={() => {
-            onEditTask(task.id)
+            onEditTask(task.label)
           }}
           addEditingItem={(text) => addEditingItem(text, task.id)}
         />

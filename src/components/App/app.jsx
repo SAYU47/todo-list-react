@@ -1,9 +1,9 @@
 import React from 'react'
 
-import TaskList from '../TaskList/task-list'
-import NewTaskForm from '../NewTaskForm/new-task-form'
-import Footer from '../Footer/footer'
-import './app.css'
+import TaskList from '../TaskList/TaskList'
+import NewTaskForm from '../NewTaskForm/NewTaskForm'
+import Footer from '../Footer/Footer'
+import './App.css'
 export default class App extends React.Component {
   maxId = 100
   state = {
@@ -13,7 +13,6 @@ export default class App extends React.Component {
       this.createTask('Have a lunch'),
       this.createTask('Drink Vodka'),
     ],
-    filter: '',
   }
 
   createTask(label) {
@@ -22,6 +21,8 @@ export default class App extends React.Component {
       done: false,
       id: this.maxId++,
       date: new Date(),
+      filter: '',
+      edit: false,
     }
   }
 
@@ -39,11 +40,13 @@ export default class App extends React.Component {
     })
   }
   addItem = (text) => {
-    const newItem = this.createTask(text)
-    this.setState(({ todoData }) => {
-      const newArray = [...todoData, newItem]
-      return { todoData: newArray }
-    })
+    if (text.length !== 0 && !text.match(/^\s/)) {
+      const newItem = this.createTask(text)
+      this.setState(({ todoData }) => {
+        const newArray = [...todoData, newItem]
+        return { todoData: newArray }
+      })
+    }
   }
   removeItem = (id) => {
     this.setState(({ todoData }) => {
@@ -65,24 +68,16 @@ export default class App extends React.Component {
       }
     })
   }
-  onEditTask = (id) => {
+  onEditTask = (label) => {
     this.setState(({ todoData }) => {
-      return {
-        todoData: this.toggleProperty(todoData, id, 'edit'),
-      }
+      const idx = todoData.findIndex((el) => el.label === label)
+      const oldItem = todoData[idx]
+      const newItem = { ...oldItem, edit: !oldItem.edit }
+      const newArray = [...todoData.slice(0, idx), newItem, ...todoData.slice(idx + 1)]
+      return { todoData: newArray }
     })
   }
-  // updateTask = (id, e) => {
-  //   if (e.keyCode === 13) {
-  //     this.setState(({ todoData }) => {
-  //       todoData.map((el) => {
-  //         el.id === id
-  //       })
-  //       const newArray = [...todoData, newItem]
-  //       return { todoData: newArray }
-  //     })
-  //   }
-  // }
+
   complitedFilterItem = () => {
     this.setState(({ todoData }) => {
       let filtredTodo = todoData.filter((item) => !item.done)
