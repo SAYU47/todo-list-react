@@ -48,8 +48,11 @@ export default class Task extends React.Component {
       <li className={classEdit}>
         <div className="view">
           <input className="toggle" type="checkbox" onChange={onToggleDone} checked={done}></input>
+
           <label>
-            <span className="description">{label}</span>
+            <span className="description" onClick={onToggleDone}>
+              {label}
+            </span>
             <TimerGone date={date} />
           </label>
           <button
