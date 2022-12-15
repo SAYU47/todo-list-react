@@ -12,7 +12,6 @@ export default class TaskList extends React.Component {
     onDeleted: PropTypes.func,
     onToggleDone: PropTypes.func,
   }
-
   render() {
     const { todos, onDeleted, onToggleDone, onEditTask, addEditingItem } = this.props
 

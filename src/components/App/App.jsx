@@ -15,9 +15,11 @@ export default class App extends React.Component {
     ],
   }
 
-  createTask(label) {
+  createTask(label, sec = 0, min = 0) {
     return {
       label,
+      sec,
+      min,
       done: false,
       id: this.maxId++,
       date: new Date(),
@@ -39,9 +41,9 @@ export default class App extends React.Component {
       }
     })
   }
-  addItem = (text) => {
+  addItem = (text, sec, min) => {
     if (text.length !== 0 && !text.match(/^\s/)) {
-      const newItem = this.createTask(text)
+      const newItem = this.createTask(text, Number(min), Number(sec))
       this.setState(({ todoData }) => {
         const newArray = [...todoData, newItem]
         return { todoData: newArray }
@@ -105,7 +107,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { todoData, filter } = this.state
+    const { todoData, filter, min, sec } = this.state
     const filterStatus = this.filterChange(todoData, filter)
     const activeCount = todoData.filter((el) => !el.done).length
     return (
@@ -116,6 +118,8 @@ export default class App extends React.Component {
         </header>
         <section className="main">
           <TaskList
+            min={min}
+            sec={sec}
             onEditTask={this.onEditTask}
             addEditingItem={this.addEditingItem}
             todos={filterStatus}

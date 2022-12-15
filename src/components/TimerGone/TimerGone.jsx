@@ -31,6 +31,6 @@ export default class TimerGone extends React.Component {
 
   render() {
     const { date } = this.state
-    return <span className="created">{date}</span>
+    return <span className="description">{date}</span>
   }
 }

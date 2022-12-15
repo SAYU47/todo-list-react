@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import TimerGone from '../TimerGone/TimerGone'
+import Timer from '../Timer/Timer'
 import './Task.css'
 export default class Task extends React.Component {
   static defaultProps = {
@@ -33,7 +34,7 @@ export default class Task extends React.Component {
   }
 
   render() {
-    const { label, done, onToggleDone, onDeleted, date, onEditTask, edit } = this.props
+    const { label, done, onToggleDone, onDeleted, date, onEditTask, edit, min, sec } = this.props
     const classEdit = edit ? 'editing' : done ? 'completed' : 'acitive'
     const editInput = (
       <form onSubmit={this.onSubmitTask}>
@@ -50,10 +51,13 @@ export default class Task extends React.Component {
           <input className="toggle" type="checkbox" onChange={onToggleDone} checked={done}></input>
 
           <label>
-            <span className="description" onClick={onToggleDone}>
+            <span className="title" onClick={onToggleDone}>
               {label}
             </span>
-            <TimerGone date={date} />
+            <div className="task-wrapper">
+              <Timer min={min} sec={sec} />
+              <TimerGone date={date} />
+            </div>
           </label>
           <button
             className="icon icon-edit"
