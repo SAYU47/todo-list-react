@@ -48,8 +48,21 @@ export default class Timer extends React.Component {
     const { min, sec } = this.state
     return (
       <span className="description">
-        <button className="icon icon-play" onClick={this.startTimer} disabled={this.state.active}></button>
-        <button className="icon icon-pause" onClick={this.stopTimer}></button>
+        <button
+          type="button"
+          aria-label="Запустить таймер"
+          title="запустить таймер"
+          className="icon icon-play"
+          onClick={this.startTimer}
+          disabled={this.state.active}
+        ></button>
+        <button
+          type="button"
+          title="Пауза"
+          aria-label="Пауза"
+          className="icon icon-pause"
+          onClick={this.stopTimer}
+        ></button>
         {min} мин : {sec} сек
       </span>
     )
