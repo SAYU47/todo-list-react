@@ -2,30 +2,33 @@
   "env": {
     "browser": true,
     "es2021": true
-  },
+  },  
+
   "ignorePatterns": ["node_modules", "dist", "build"],
-  "extends": [
+  "extends": [ 
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:import/errors",
     "plugin:import/warnings"
+    
   ],
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
+    "requireConfigFile": false, // <== ADD THIS
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+   },
     "ecmaFeatures": {
       "jsx": true
     },
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier", "import"],
+  "plugins": ["react", "prettier", "import", "eslint-plugin-prettier"],
   "rules": {
     "indent": ["error", 2],
-    "prettier/prettier": [ "error",
-    {
-      "endOfLine": "auto"
-    }
-  ],
+    "prettier/prettier": "error",
     "linebreak-style": [0, "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "never"],
@@ -48,9 +51,10 @@
       }
     ]
   },
+
   "settings": {
     "react": {
-      "version": "999.999.999"
+      "version": "detect"
     },
     "import/resolver": {
       "node": {
