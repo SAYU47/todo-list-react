@@ -34,7 +34,7 @@ function App() {
     })
   }
   const addItem = (text, sec, min) => {
-    if (text.length !== 0 && !text.match(/^\s/)) {
+    if (text.length !== 0 && !text.match(/^\s/) && min.length !== 0 && sec.length !== 0) {
       const newItem = createTask(text, Number(min), Number(sec))
       setTodoData((todoData) => [...todoData, newItem])
     }
@@ -87,7 +87,6 @@ function App() {
       return [...todoData.slice(0, 0)]
     })
   }
-  // const { todoData, filter, min, sec } = this.state
   const filterStatus = filterChange(todoData, filterName)
   const activeCount = todoData.filter((el) => !el.done).length
   return (
@@ -98,15 +97,12 @@ function App() {
       </header>
       <section className="main">
         <TaskList
-          // min={min}
-          // sec={sec}
           onEditTask={onEditTask}
           addEditingItem={addEditingItem}
           todos={filterStatus}
           onDeleted={removeItem}
           onToggleDone={onToggleDone}
           filterSwich={filterSwich}
-          // updateTime={updateTime}
         />
         <Footer
           clearTodo={clearTodo}

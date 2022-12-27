@@ -47,7 +47,6 @@ const NewTaskForm = ({ onItemAdd }) => {
         min="0"
         onChange={minutesCount}
         value={min}
-        autoFocus
       ></input>
       <input
         placeholder="Sec"
@@ -56,7 +55,6 @@ const NewTaskForm = ({ onItemAdd }) => {
         onChange={secondsCount}
         value={sec}
         min="0"
-        autoFocus
       ></input>
       <input type="submit" style={{ display: 'none' }}></input>
     </form>

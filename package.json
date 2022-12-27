@@ -8,11 +8,11 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "format": "prettier --write ./src",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix --color"
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix --color"
   },
   "husky": {
-    "hooks": {
+      "hooks": {
       "pre-commit": "lint-staged"
     }
   },
