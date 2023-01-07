@@ -1,4 +1,4 @@
 # TodoApp
 
-[TodoList без таймера](https://todo-list-react-sooty.vercel.app/).
-[TodoList Добавлен таймер](https://todo-list-with-timer.vercel.app/)
+[TodoList c Таймером и на хуках](https://vercel.com/sayu47/todo-on-hooks-with-timer).
+
