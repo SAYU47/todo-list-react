@@ -1,4 +1,4 @@
 # TodoApp
 
-[TodoList c Таймером и на хуках](https://vercel.com/sayu47/todo-on-hooks-with-timer).
+[TodoList c Таймером и на хуках](https://todo-on-hooks-with-timer-ten.vercel.app/).
 
