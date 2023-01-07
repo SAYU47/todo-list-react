@@ -62,12 +62,12 @@ function App() {
     })
   }
 
-  const complitedFilterItem = () => {
-    setTodoData((todoData) => {
-      let filtredTodo = todoData.filter((item) => !item.done)
-      return [...filtredTodo]
-    })
-  }
+  // const complitedFilterItem = () => {
+  //   setTodoData((todoData) => {
+  //     let filtredTodo = todoData.filter((item) => !item.done)
+  //     return [...filtredTodo]
+  //   })
+  // }
 
   const filterChange = (todoData, filterName) => {
     if (filterName === 'active') {
@@ -84,7 +84,8 @@ function App() {
 
   const clearTodo = () => {
     setTodoData((todoData) => {
-      return [...todoData.slice(0, 0)]
+      let filtredTodo = todoData.filter((item) => !item.done)
+      return [...filtredTodo]
     })
   }
   const filterStatus = filterChange(todoData, filterName)
@@ -110,7 +111,6 @@ function App() {
           onToggleDone={onToggleDone}
           filterSwich={filterSwich}
           filter={filterName}
-          complitedFilterItem={complitedFilterItem}
         />
       </section>
     </section>

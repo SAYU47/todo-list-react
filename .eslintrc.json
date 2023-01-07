@@ -13,9 +13,9 @@
     "plugin:import/warnings"
     
   ],
-  // "parser": "@babel/eslint-parser",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    // "requireConfigFile": false, // <== ADD THIS
+    "requireConfigFile": false, // <== ADD THIS
     "babelOptions": {
       "presets": ["@babel/preset-react"]
    },
